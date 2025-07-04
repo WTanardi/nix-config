@@ -14,7 +14,8 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```sh
 nix shell nixpkgs#home-manager nixpkgs#gh --command sh -c "\
   gh auth login \
-  && gh repo clone WTanardi/wsl-home --depth=1 \
-  && home-manager switch --flake ./wsl-home#willi -b bckp \
+  && gh repo clone WTanardi/nix-config --depth=1 \
+  && cd nix-config/ \
+  && home-manager switch --flake ./nix-config#willi -b bckp \
 "
 ```
