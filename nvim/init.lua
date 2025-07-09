@@ -29,16 +29,6 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
---
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
---
 require("lazy").setup({
 	"NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
 
@@ -57,7 +47,7 @@ require("lazy").setup({
 
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
+		event = { "VeryLazy" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -129,12 +119,6 @@ require("lazy").setup({
 		"neovim/nvim-lspconfig",
 		event = { "VeryLazy" }, -- lazy-load when opening a file
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
-			-- Mason must be loaded before its dependents so we need to set it up here.
-			-- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-			{ "mason-org/mason.nvim", opts = {} },
-			"mason-org/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
 			{ "j-hui/fidget.nvim", opts = {} },
@@ -291,71 +275,30 @@ require("lazy").setup({
 			--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
 			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
-			--  Add any additional override configuration in the following tables. Available keys are:
-			--  - cmd (table): Override the default command used to start the server
-			--  - filetypes (table): Override the default list of associated filetypes for the server
-			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-			--  - settings (table): Override the default settings passed when initializing the server.
-			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-			local servers = {
-				gopls = {},
-				ts_ls = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
+			require("lspconfig").ts_ls.setup({
+				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+			})
+			require("lspconfig").tailwindcss_language_server.setup({
+				filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html" },
+				settings = {
+					tailwindCSS = {
+						lint = {
+							cssConflict = "warning",
+							invalidApply = "error",
+							invalidScreen = "error",
+							invalidVariant = "error",
+							invalidConfigPath = "error",
+						},
+						experimental = {
+							classRegex = {
+								{ "tw`([^`]*)", 1 },
+								{ 'tw="([^"]*)', 1 },
+								{ "tw\\.\\w+`([^`]*)", 1 },
+								{ "tw\\(.*?['\"](.*?)['\"]\\)", 1 },
 							},
 						},
+						validate = true,
 					},
-				},
-				tailwindcss = {},
-				html = {},
-				htmx = {},
-				jsonls = {},
-				eslint = {},
-				emmet_language_server = {},
-				templ = {},
-				julials = {},
-			}
-
-			-- Ensure the servers and tools above are installed
-			--
-			-- To check the current status of installed tools and/or manually install
-			-- other tools, you can run
-			--    :Mason
-			--
-			-- You can press `g?` for help in this menu.
-			--
-			-- `mason` had to be setup earlier: to configure its options see the
-			-- `dependencies` table for `nvim-lspconfig` above.
-			--
-			-- You can add other tools here that you want Mason to install
-			-- for you, so that they are available from within Neovim.
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
-				"markdownlint-cli2",
-				"nixfmt",
-			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
 				},
 			})
 		end,
