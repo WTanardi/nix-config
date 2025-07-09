@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   home = {
     username = "willi";
     homeDirectory = "/home/willi";
@@ -9,27 +7,20 @@
 
     packages = with pkgs; [
       eza
-      ripgrep
-      fzf
-      lazygit
       zoxide
       fd
-      xclip
-      unzip
-      gnumake
+      lazygit
       gh
+      unzip
       wsl-open
 
-      lua54Packages.jsregexp
-      markdownlint-cli2
-      prettierd
-
-      gcc
+      bun
       cargo
 
       zig
       lua
       go
+      typescript
     ];
     file = {
       ".config/nvim" = {
