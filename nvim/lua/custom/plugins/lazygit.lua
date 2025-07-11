@@ -2,7 +2,7 @@
 
 return {
 	"kdheepak/lazygit.nvim",
-	-- event = 'VeryLazy',
+	event = "VeryLazy",
 	keys = {
 		{
 			"lg",

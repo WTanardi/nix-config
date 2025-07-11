@@ -24,17 +24,22 @@
         lua54Packages.jsregexp
 
         # Language servers
-        gopls
-        typescript-language-server
         lua-language-server
-        htmx-lsp
-        eslint_d
+        pyright
+        typescript-language-server
+        emmet-ls
+        gopls
+        vscode-langservers-extracted
+        bash-language-server
+        nixd
 
         # Formatters
-        nixfmt
         stylua
+        black
         prettierd
         markdownlint-cli2
+        jsonfmt
+        nixfmt
       ];
     };
   };
