@@ -39,7 +39,6 @@ return {
 				typescript = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
-				json = { "jsonfmt" },
 				nix = { "nixfmt" },
 			},
 		},

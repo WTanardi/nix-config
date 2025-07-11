@@ -22,6 +22,8 @@
         luajit
         xclip
         lua54Packages.jsregexp
+        luajitPackages.luarocks
+        tree-sitter
 
         # Language servers
         lua-language-server
@@ -38,7 +40,6 @@
         black
         prettierd
         markdownlint-cli2
-        jsonfmt
         nixfmt
       ];
     };

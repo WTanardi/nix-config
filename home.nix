@@ -17,7 +17,6 @@
       bun
       cargo
 
-      zig
       lua
       go
       typescript
