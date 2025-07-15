@@ -34,6 +34,7 @@
         vscode-langservers-extracted
         bash-language-server
         nixd
+        eslint_d
 
         # Formatters
         stylua
