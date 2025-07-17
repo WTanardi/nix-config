@@ -13,13 +13,24 @@
       gh
       unzip
       wsl-open
-
-      bun
-      cargo
+      gnumake
+      ripgrep
+      fzf
+      gcc
+      xclip
+      tree-sitter
 
       lua
       go
       typescript
+
+      bun
+      cargo
+      luajitPackages.jsregexp
+      luajitPackages.luarocks
+      go-blueprint
+      air
+      templ
     ];
     file = {
       ".config/nvim" = {

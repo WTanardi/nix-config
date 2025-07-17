@@ -14,17 +14,6 @@
       withRuby = true;
 
       extraPackages = with pkgs; [
-        # Runtime dependencies
-        ripgrep
-        fzf
-        gnumake
-        gcc
-        luajit
-        xclip
-        lua54Packages.jsregexp
-        luajitPackages.luarocks
-        tree-sitter
-
         # Language servers
         lua-language-server
         pyright
@@ -35,6 +24,8 @@
         bash-language-server
         nixd
         eslint_d
+        templ
+        htmx-lsp
 
         # Formatters
         stylua

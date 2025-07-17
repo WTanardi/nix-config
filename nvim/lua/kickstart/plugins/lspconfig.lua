@@ -301,6 +301,17 @@ return {
 				capabilities = capabilities,
 			})
 
+			-- Templ Language Server
+			lspconfig.templ.setup({
+				capabilities = capabilities,
+			})
+
+			-- HTMX Language Server
+			lspconfig.htmx.setup({
+				capabilities = capabilities,
+				filetypes = { "html", "templ" },
+			})
+
 			-- Add more language servers as needed...
 			-- See :help lspconfig-all for a complete list of available servers
 		end,
