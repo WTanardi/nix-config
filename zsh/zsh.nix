@@ -12,8 +12,7 @@
         cd = "z";
         ll = "eza -l";
         la = "eza -l -a";
-        sau =
-          "sudo apt update && sudo apt upgrade && sudo apt autoremove && brew upgrade";
+        sau = "sudo apt update && sudo apt upgrade && sudo apt autoremove";
         c = "clear";
         lg = "lazygit";
         hms = "home-manager switch --flake ~/nix-config/.#willi";
