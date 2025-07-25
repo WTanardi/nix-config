@@ -19,18 +19,11 @@
       gcc
       xclip
       tree-sitter
-
-      lua
-      go
-      typescript
-
       bun
       cargo
-      luajitPackages.jsregexp
-      luajitPackages.luarocks
-      go-blueprint
-      air
-      templ
+      miktex
+      pandoc
+      sqlite
     ];
     file = {
       ".config/nvim" = {
@@ -39,6 +32,13 @@
       };
     };
   };
+
+  imports = [
+    # Languages
+    ./languages/python.nix
+    ./languages/lua.nix
+    ./languages/go.nix
+  ];
 
   programs = {
     home-manager = { enable = true; };
