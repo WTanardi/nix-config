@@ -15,7 +15,7 @@
         sau = "sudo apt update && sudo apt upgrade && sudo apt autoremove";
         c = "clear";
         lg = "lazygit";
-        hms = "home-manager switch --flake ~/nix-config/.#willi";
+        hms = "home-manager switch --flake ~/nix-config/.#williamtanardi";
       };
     };
   };
