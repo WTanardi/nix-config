@@ -61,6 +61,15 @@ return {
 				--   },
 				-- },
 				-- pickers = {}
+				defaults = {
+					path_display = { "truncate" }, -- Or another option
+					layout_strategy = "horizontal",
+					layout_config = {
+						horizontal = {
+							preview_width = 0.4, -- Adjust to give results more space
+						},
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
