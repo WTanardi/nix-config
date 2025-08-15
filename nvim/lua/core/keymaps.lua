@@ -28,6 +28,7 @@ vim.keymap.set("n", "gb", "<C-i>", { desc = "[g]o [b]ack in jumplist" })
 vim.keymap.set("n", "<Leader>ds", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 vim.keymap.set("n", "<leader>t", "<cmd>lua MiniFiles.open()<CR>", { desc = "Open File[t]ree" })
+vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<CR>", { desc = "Open [o]il" })
 vim.keymap.set("n", "<leader>ld", "<cmd>Lazy<CR>", { desc = "Open [L]azy [D]ashboard" })
 vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<CR>", { desc = "[S]earch [T]odo" })
 vim.keymap.set("n", "-", function()
