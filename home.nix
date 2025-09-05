@@ -24,6 +24,9 @@
       pandoc
       sqlite
 
+      typescript
+      typescript-language-server
+
       nodejs
     ];
     file = {

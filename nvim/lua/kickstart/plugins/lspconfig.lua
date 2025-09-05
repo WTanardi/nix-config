@@ -241,14 +241,14 @@ return {
 			})
 
 			-- TypeScript Language Server
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-				init_options = {
-					preferences = {
-						disableSuggestions = true,
-					},
-				},
-			})
+			-- lspconfig.ts_ls.setup({
+			-- 	capabilities = capabilities,
+			-- 	init_options = {
+			-- 		preferences = {
+			-- 			disableSuggestions = true,
+			-- 		},
+			-- 	},
+			-- })
 
 			-- Go Language Server
 			lspconfig.gopls.setup({
