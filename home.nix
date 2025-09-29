@@ -54,6 +54,7 @@
       enable = true;
       userEmail = "william.tanardi@soluix.ai";
       userName = "williamtanardi-soluix";
+      extraConfig = { fetch.prune = true; };
     };
   };
 }
