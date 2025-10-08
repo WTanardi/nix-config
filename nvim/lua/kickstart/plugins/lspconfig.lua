@@ -312,6 +312,12 @@ return {
 				filetypes = { "html", "templ" },
 			})
 
+			-- Tailwind Language Server
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+				filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
+			})
+
 			-- Add more language servers as needed...
 			-- See :help lspconfig-all for a complete list of available servers
 		end,

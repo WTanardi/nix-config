@@ -28,6 +28,8 @@
       typescript-language-server
 
       nodejs
+
+      tailwindcss
     ];
     file = {
       ".config/nvim" = {
