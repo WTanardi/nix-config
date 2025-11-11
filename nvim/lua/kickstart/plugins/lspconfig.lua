@@ -241,14 +241,14 @@ return {
 			})
 
 			-- TypeScript Language Server
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-				init_options = {
-					preferences = {
-						disableSuggestions = true,
-					},
-				},
-			})
+			-- lspconfig.ts_ls.setup({
+			-- 	capabilities = capabilities,
+			-- 	init_options = {
+			-- 		preferences = {
+			-- 			disableSuggestions = true,
+			-- 		},
+			-- 	},
+			-- })
 
 			-- Go Language Server
 			lspconfig.gopls.setup({
@@ -310,6 +310,12 @@ return {
 			lspconfig.htmx.setup({
 				capabilities = capabilities,
 				filetypes = { "html", "templ" },
+			})
+
+			-- Tailwind Language Server
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+				filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
 			})
 
 			-- Add more language servers as needed...

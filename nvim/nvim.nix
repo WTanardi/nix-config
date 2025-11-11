@@ -26,6 +26,7 @@
         eslint_d
         templ
         htmx-lsp
+        tailwindcss-language-server
 
         # Formatters
         stylua

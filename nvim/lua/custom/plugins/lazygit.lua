@@ -5,7 +5,7 @@ return {
 	event = "VeryLazy",
 	keys = {
 		{
-			"lg",
+			"<leader>lg",
 			":LazyGit<Return>",
 			silent = true,
 			noremap = true,

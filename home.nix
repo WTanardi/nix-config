@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   home = {
-    username = "willi";
-    homeDirectory = "/home/willi";
+    username = "williamtanardi";
+    homeDirectory = "/Users/williamtanardi";
 
     stateVersion = "25.05"; # Don't change
 
@@ -21,9 +21,15 @@
       tree-sitter
       bun
       cargo
-      miktex
       pandoc
       sqlite
+
+      typescript
+      typescript-language-server
+
+      nodejs
+
+      tailwindcss
     ];
     file = {
       ".config/nvim" = {
@@ -48,8 +54,9 @@
     };
     git = {
       enable = true;
-      userEmail = "william.tanardi@gmail.com";
-      userName = "WTanardi";
+      userEmail = "william.tanardi@soluix.ai";
+      userName = "williamtanardi-soluix";
+      extraConfig = { fetch.prune = true; };
     };
   };
 }
