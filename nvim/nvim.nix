@@ -33,7 +33,7 @@
         black
         prettierd
         markdownlint-cli2
-        nixfmt
+        nixfmt-rfc-style
       ];
     };
   };

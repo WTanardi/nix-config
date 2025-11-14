@@ -39,7 +39,7 @@ return {
 				typescript = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
-				nix = { "nixfmt" },
+				nix = { "nixfmt-rfc-style" },
 			},
 		},
 	},
