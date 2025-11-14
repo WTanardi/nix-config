@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   home = {
     username = "williamtanardi";
-    homeDirectory = "/Users/williamtanardi";
+    homeDirectory = "/home/williamtanardi";
 
     stateVersion = "25.05"; # Don't change
 
@@ -28,6 +28,8 @@
       typescript-language-server
 
       nodejs
+
+      vscode
 
       tailwindcss
     ];
@@ -58,5 +60,9 @@
       userName = "williamtanardi-soluix";
       extraConfig = { fetch.prune = true; };
     };
+  };
+  nixpkgs.config = {
+    # allowBroken = true;
+    allowUnfree = true;
   };
 }
