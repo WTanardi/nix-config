@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   programs = {
     neovim = {
       enable = true;
@@ -27,6 +28,7 @@
         templ
         htmx-lsp
         tailwindcss-language-server
+        angular-language-server
 
         # Formatters
         stylua

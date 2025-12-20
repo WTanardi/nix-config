@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home = {
     username = "williamtanardi";
     homeDirectory = "/home/williamtanardi";
@@ -26,8 +27,14 @@
 
       typescript
       typescript-language-server
+      angular-language-server
 
-      nodejs
+      nodejs_latest
+      pnpm
+
+      nodePackages_latest."@angular/cli"
+
+      docker
 
       vscode
 
@@ -43,22 +50,37 @@
 
   imports = [
     # Languages
-    ./languages/python.nix
+    # ./languages/python.nix
     ./languages/lua.nix
     ./languages/go.nix
   ];
 
   programs = {
-    home-manager = { enable = true; };
+    home-manager = {
+      enable = true;
+    };
     zoxide = {
       enable = true;
       enableZshIntegration = true;
     };
     git = {
       enable = true;
-      userEmail = "william.tanardi@soluix.ai";
-      userName = "williamtanardi-soluix";
-      extraConfig = { fetch.prune = true; };
+      userEmail = "william.tanardi@gmail.com";
+      userName = "WTanardi";
+      extraConfig = {
+        fetch.prune = true;
+      };
+      includes = [
+        {
+          condition = "gitdir:~/code/";
+          contents = {
+            user = {
+              email = "william.tanardi@soluix.ai";
+              name = "williamtanardi-soluix";
+            };
+          };
+        }
+      ];
     };
   };
   nixpkgs.config = {
