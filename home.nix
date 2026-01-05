@@ -69,6 +69,10 @@
       userName = "WTanardi";
       extraConfig = {
         fetch.prune = true;
+        core = {
+          sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
+        };
+        init.defaultBranch = "main";
       };
       includes = [
         {
@@ -77,6 +81,10 @@
             user = {
               email = "william.tanardi@soluix.ai";
               name = "williamtanardi-soluix";
+            };
+            # FIXED: 'core' must be INSIDE 'contents'
+            core = {
+              sshCommand = "ssh -i ~/.ssh/id_ed25519_work";
             };
           };
         }
