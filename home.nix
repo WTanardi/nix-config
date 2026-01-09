@@ -25,16 +25,13 @@
       pandoc
       sqlite
 
+      docker
+
       typescript
       typescript-language-server
-      angular-language-server
 
       nodejs_latest
       pnpm
-
-      nodePackages_latest."@angular/cli"
-
-      docker
 
       vscode
 
@@ -65,15 +62,18 @@
     };
     git = {
       enable = true;
-      userEmail = "william.tanardi@gmail.com";
-      userName = "WTanardi";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "WTanardi";
+          email = "william.tanardi@gmail.com";
+        };
         fetch.prune = true;
         core = {
           sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
         };
         init.defaultBranch = "main";
       };
+
       includes = [
         {
           condition = "gitdir:~/code/";
@@ -82,7 +82,6 @@
               email = "william.tanardi@soluix.ai";
               name = "williamtanardi-soluix";
             };
-            # FIXED: 'core' must be INSIDE 'contents'
             core = {
               sshCommand = "ssh -i ~/.ssh/id_ed25519_work";
             };
