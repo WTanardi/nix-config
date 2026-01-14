@@ -320,6 +320,7 @@ return {
 
 			-- Add more language servers as needed...
 			-- See :help lspconfig-all for a complete list of available servers
+			vim.lsp.enable("gleam")
 		end,
 	},
 }

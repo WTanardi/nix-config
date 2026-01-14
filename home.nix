@@ -29,6 +29,9 @@
 
       typescript
       typescript-language-server
+      gleam
+      erlang
+      rebar3
 
       nodejs_latest
       pnpm
