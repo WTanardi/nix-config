@@ -33,6 +33,8 @@
       erlang
       rebar3
 
+      exercism
+
       nodejs_latest
       pnpm
 
