@@ -210,116 +210,48 @@ return {
 			-- Rust: Install rust-analyzer from rustup or your package manager
 			-- Go: Install gopls with: go install golang.org/x/tools/gopls@latest
 			-- C/C++: Install clangd from your package manager
-
-			-- Configure each language server directly
-			local lspconfig = require("lspconfig")
-
-			-- Lua Language Server
-			lspconfig.lua_ls.setup({
+			-- Lua
+			vim.lsp.enable("lua_ls", {
 				capabilities = capabilities,
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
-					},
-				},
+				settings = { Lua = { completion = { callSnippet = "Replace" } } },
 			})
 
-			-- Python Language Server
-			lspconfig.pyright.setup({
+			-- Python
+			vim.lsp.enable("pyright", {
 				capabilities = capabilities,
-				settings = {
-					python = {
-						analysis = {
-							typeCheckingMode = "basic",
-						},
-					},
-				},
+				settings = { python = { analysis = { typeCheckingMode = "basic" } } },
 			})
 
-			-- TypeScript Language Server
-			-- lspconfig.ts_ls.setup({
-			-- 	capabilities = capabilities,
-			-- 	init_options = {
-			-- 		preferences = {
-			-- 			disableSuggestions = true,
-			-- 		},
-			-- 	},
-			-- })
-
-			-- Go Language Server
-			lspconfig.gopls.setup({
+			-- Go
+			vim.lsp.enable("gopls", {
 				capabilities = capabilities,
-				settings = {
-					gopls = {
-						gofumpt = true,
-						analyses = {
-							unusedparams = true,
-						},
-						staticcheck = true,
-					},
-				},
+				settings = { gopls = { gofumpt = true, analyses = { unusedparams = true }, staticcheck = true } },
 			})
 
-			-- Emmet Language Server
-			lspconfig.emmet_ls.setup({
+			-- Web Development
+			vim.lsp.enable("emmet_ls", {
 				capabilities = capabilities,
 				filetypes = { "html", "typescriptreact", "javascriptreact", "templ" },
 			})
 
-			-- HTML Language Server
-			lspconfig.html.setup({
+			vim.lsp.enable("html", { capabilities = capabilities, filetypes = { "html", "templ" } })
+			vim.lsp.enable("cssls", { capabilities = capabilities })
+			vim.lsp.enable("jsonls", {
 				capabilities = capabilities,
-				filetypes = { "html", "templ" },
+				settings = { json = { validate = { enable = true } } },
 			})
 
-			-- CSS Language Server
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-			})
-
-			-- JSON Language Server
-			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-				settings = {
-					json = {
-						validate = { enable = true },
-					},
-				},
-			})
-
-			-- Bash Language Server
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-			})
-
-			-- Nix Language Server
-			lspconfig.nixd.setup({
-				capabilities = capabilities,
-			})
-
-			-- Templ Language Server
-			lspconfig.templ.setup({
-				capabilities = capabilities,
-			})
-
-			-- HTMX Language Server
-			lspconfig.htmx.setup({
-				capabilities = capabilities,
-				filetypes = { "html", "templ" },
-			})
-
-			-- Tailwind Language Server
-			lspconfig.tailwindcss.setup({
+			-- Others
+			vim.lsp.enable("bashls", { capabilities = capabilities })
+			vim.lsp.enable("nixd", { capabilities = capabilities })
+			vim.lsp.enable("templ", { capabilities = capabilities })
+			vim.lsp.enable("htmx", { capabilities = capabilities, filetypes = { "html", "templ" } })
+			vim.lsp.enable("tailwindcss", {
 				capabilities = capabilities,
 				filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
 			})
 
-			-- Add more language servers as needed...
-			-- See :help lspconfig-all for a complete list of available servers
+			-- Additional manual enablement
 			vim.lsp.enable("gleam")
 		end,
 	},

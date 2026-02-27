@@ -8,7 +8,7 @@
       vimAlias = true;
       vimdiffAlias = true;
 
-      extraLuaConfig = "${builtins.readFile ./init.lua}";
+      initLua = "${builtins.readFile ./init.lua}";
 
       withNodeJs = true;
       withPython3 = true;
@@ -35,7 +35,7 @@
         black
         prettierd
         markdownlint-cli2
-        nixfmt-rfc-style
+        nixfmt
       ];
     };
   };

@@ -85,6 +85,7 @@ require("lazy").setup({
 			task = "📌",
 			lazy = "💤 ",
 		},
+		border = "rounded", -- Options: "none", "single", "double", "rounded", "solid", "shadow"
 	},
 	rtp = {
 		disabled_plugins = {
