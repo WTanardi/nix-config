@@ -106,8 +106,10 @@
 
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
       matchBlocks = {
+        "*" = {
+          addKeysToAgent = "yes";
+        };
         "github.com" = {
           hostname = "github.com";
           identityFile = "~/.ssh/id_ed25519_work";
