@@ -44,6 +44,7 @@
 
       vscode
 
+      prettierd
       tailwindcss
     ];
     file = {
