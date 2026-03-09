@@ -6,6 +6,10 @@
 
     stateVersion = "25.05"; # Don't change
 
+    sessionVariables = {
+      GOPRIVATE = "github.com/soluixdeveloper/*";
+    };
+
     packages = with pkgs; [
       eza
       zoxide
@@ -61,10 +65,12 @@
     home-manager = {
       enable = true;
     };
+
     zoxide = {
       enable = true;
       enableZshIntegration = true;
     };
+
     git = {
       enable = true;
       settings = {
@@ -77,6 +83,7 @@
           sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
         };
         init.defaultBranch = "main";
+        url."git@github.com:soluixdeveloper/".insteadOf = "https://github.com/soluixdeveloper/";
       };
 
       includes = [
@@ -90,9 +97,21 @@
             core = {
               sshCommand = "ssh -i ~/.ssh/id_ed25519_work";
             };
+            url."git@github.com:soluixdeveloper/".insteadOf = "https://github.com/soluixdeveloper/";
           };
         }
       ];
+    };
+
+    ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+      matchBlocks = {
+        "github.com" = {
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_ed25519_work";
+        };
+      };
     };
   };
   nixpkgs.config = {
