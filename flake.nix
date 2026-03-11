@@ -27,6 +27,7 @@
           ./nvim/nvim.nix
           ./zsh/zsh.nix
           ./starship/starship.nix
+          ./tmux/tmux.nix
         ];
 
         # Optionally use extraSpecialArgs
