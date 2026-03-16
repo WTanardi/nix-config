@@ -45,7 +45,7 @@ vim.keymap.set("n", "-", function()
 	end, 30)
 end, { desc = "Open Mini Files" })
 
-vim.keymap.set("v", "<leader>rs", ':s/\\v"[^"]*"/string/g | nohlsearch<CR>', { desc = "[R]eplace [S]tring" })
+vim.keymap.set("v", "<leader>rs", ":s/\\v'[^']*'/string/g | nohlsearch<CR>", { desc = "[R]eplace [S]tring" })
 vim.keymap.set("v", "<leader>rb", ":s/\\v<(true|false)>/boolean/g | nohlsearch<CR>", { desc = "[R]eplace [B]oolean" })
 vim.keymap.set("v", "<leader>rn", ":s/\\v<\\d+(\\.\\d+)?>/number/g | nohlsearch<CR>", { desc = "[R]eplace [N]umber" })
 
