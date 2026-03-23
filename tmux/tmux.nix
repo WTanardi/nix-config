@@ -36,8 +36,15 @@
       # new tab
       bind -n C-t new-window
 
-      # close tab
-      bind -n C-q kill-window
+      # close tab WITH CONFIRMATION
+      # -p sets the prompt text; #W is the window name
+      bind -n C-q confirm-before -p "Kill window #W? (y/n)" kill-window
+
+      ##### DETACHING #####
+
+      # Standard detach (Prefix + d)
+      # This keeps the session alive in the background
+      bind d detach-client
 
       ##### DIRECT WINDOW ACCESS #####
 
