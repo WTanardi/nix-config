@@ -46,8 +46,6 @@ return {
 			-- Thus, Language Servers are external tools that must be installed separately from
 			-- Neovim. This is where you'll need to install them manually on your system.
 
-			vim.lsp.set_log_level("error")
-
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
 			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -108,7 +106,7 @@ return {
 					---@param bufnr? integer some lsp support methods only in specific files
 					---@return boolean
 					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
+						if vim.fn.has("nvim-0.12") == 1 then
 							return client:supports_method(method, bufnr)
 						else
 							return client.supports_method(method, { bufnr = bufnr })
