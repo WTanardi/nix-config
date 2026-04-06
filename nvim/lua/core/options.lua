@@ -37,3 +37,8 @@ end)
 vim.o.confirm = true
 
 vim.o.winborder = "rounded"
+
+vim.diagnostic.config({
+	virtual_text = false, -- Only show diagnostics in a float or sign column
+	update_in_insert = false, -- Don't refresh diagnostics while typing
+})
