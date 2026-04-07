@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   home = {
     packages = with pkgs; [
       # Go
@@ -6,6 +7,7 @@
       go-blueprint
       air
       templ
+      cobra-cli
     ];
   };
 }
