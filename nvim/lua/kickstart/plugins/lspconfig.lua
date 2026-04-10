@@ -245,7 +245,6 @@ return {
 			vim.lsp.enable("bashls", { capabilities = capabilities })
 			vim.lsp.enable("nixd", { capabilities = capabilities })
 			vim.lsp.enable("templ", { capabilities = capabilities })
-			vim.lsp.enable("htmx", { capabilities = capabilities, filetypes = { "html", "templ" } })
 			vim.lsp.enable("tailwindcss", {
 				capabilities = capabilities,
 				filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
