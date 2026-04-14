@@ -25,6 +25,7 @@
       xclip
       tree-sitter
       bun
+      yarn
       cargo
       pandoc
       sqlite
@@ -57,7 +58,7 @@
 
   imports = [
     # Languages
-    # ./languages/python.nix
+    ./languages/python.nix
     ./languages/lua.nix
     ./languages/go.nix
   ];
