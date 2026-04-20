@@ -8,6 +8,7 @@
       air
       templ
       cobra-cli
+      goreleaser
     ];
   };
 }
