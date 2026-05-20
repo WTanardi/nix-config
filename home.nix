@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home = {
     username = "williamtanardi";
@@ -8,6 +13,7 @@
 
     sessionVariables = {
       GOPRIVATE = "github.com/soluixdeveloper/*";
+      LD_LIBRARY_PATH = lib.mkAfter "${pkgs.stdenv.cc.cc.lib}/lib";
     };
 
     packages = with pkgs; [
@@ -29,6 +35,7 @@
       cargo
       pandoc
       sqlite
+      stdenv.cc.cc.lib
 
       docker
 

@@ -32,7 +32,7 @@
 
         # Formatters
         stylua
-        black
+        ruff
         prettierd
         markdownlint-cli2
         nixfmt

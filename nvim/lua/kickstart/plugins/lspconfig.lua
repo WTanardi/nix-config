@@ -217,7 +217,7 @@ return {
 			})
 
 			-- Python
-			vim.lsp.enable("pyright", {
+			vim.lsp.enable("ruff", {
 				capabilities = capabilities,
 				settings = { python = { analysis = { typeCheckingMode = "basic" } } },
 			})

@@ -34,7 +34,7 @@ return {
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				lua = { "stylua" },
-				python = { "black" },
+				python = { "ruff_organize_imports", "ruff_format", "ruff_fix" },
 				nix = { "nixfmt-rfc-style" },
 
 				javascript = { "prettierd" },
