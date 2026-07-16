@@ -73,7 +73,7 @@
 
       set -ga terminal-overrides ",*:RGB"
 
-      bind s choose-tree -Zs
+      bind s choose-tree -Zs -O name
 
     '';
   };
