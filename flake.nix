@@ -17,6 +17,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      security.sudo.enable = true;
       homeConfigurations."williamtanardi" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 

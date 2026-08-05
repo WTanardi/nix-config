@@ -11,6 +11,5 @@ in
   home.packages = with pkgs; [
     myPython
     uv
-    ruff
   ];
 }

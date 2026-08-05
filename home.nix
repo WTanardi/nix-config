@@ -4,6 +4,16 @@
   lib,
   ...
 }:
+
+let
+  # Build a custom gcloud bundle that includes the mandatory GKE auth plugin binary
+  gcloud-with-gke = pkgs.google-cloud-sdk.withExtraComponents (
+    with pkgs.google-cloud-sdk.components;
+    [
+      gke-gcloud-auth-plugin
+    ]
+  );
+in
 {
   home = {
     username = "williamtanardi";
@@ -14,6 +24,7 @@
     sessionVariables = {
       GOPRIVATE = "github.com/soluixdeveloper/*";
       LD_LIBRARY_PATH = lib.mkAfter "${pkgs.stdenv.cc.cc.lib}/lib";
+      KUBECONFIG = "kubeconfig-bci-dev.yaml";
     };
 
     packages = with pkgs; [
@@ -36,13 +47,21 @@
       pandoc
       sqlite
       stdenv.cc.cc.lib
+      sshpass
+      zip
+      k9s
+      kubectl
+      gcloud-with-gke
 
+      openvpn
       docker
 
       typescript
       typescript-language-server
-      gleam
-      erlang
+      # (gleam.overrideAttrs (_: {
+      #   doCheck = false;
+      # }))
+      # erlang
       rebar3
 
       exercism
@@ -52,6 +71,7 @@
 
       vscode
 
+      ruff
       prettierd
       tailwindcss
     ];
@@ -88,11 +108,8 @@
           email = "william.tanardi@gmail.com";
         };
         fetch.prune = true;
-        core = {
-          sshCommand = "ssh -i ~/.ssh/id_ed25519_personal";
-        };
         init.defaultBranch = "main";
-        url."git@github.com:soluixdeveloper/".insteadOf = "https://github.com/soluixdeveloper/";
+        url."git@github.com:".insteadOf = "https://github.com/";
       };
 
       includes = [
@@ -102,9 +119,6 @@
             user = {
               email = "william.tanardi@soluix.ai";
               name = "williamtanardi-soluix";
-            };
-            core = {
-              sshCommand = "ssh -i ~/.ssh/id_ed25519_work";
             };
             url."git@github.com:soluixdeveloper/".insteadOf = "https://github.com/soluixdeveloper/";
           };

@@ -211,44 +211,74 @@ return {
 			-- Go: Install gopls with: go install golang.org/x/tools/gopls@latest
 			-- C/C++: Install clangd from your package manager
 			-- Lua
-			vim.lsp.enable("lua_ls", {
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = { Lua = { completion = { callSnippet = "Replace" } } },
 			})
+			vim.lsp.enable("lua_ls")
 
 			-- Python
-			vim.lsp.enable("ruff", {
+			local function get_python_path(workspace)
+				local venv = workspace .. "/.venv/bin/python"
+				if vim.fn.executable(venv) == 1 then
+					return venv
+				end
+				return vim.fn.exepath("python3")
+			end
+
+			vim.lsp.config("pyright", {
 				capabilities = capabilities,
+				before_init = function(_, config)
+					config.settings = config.settings or {}
+					config.settings.python = config.settings.python or {}
+					local root = config.root_dir or vim.loop.cwd()
+					config.settings.python.pythonPath = get_python_path(root)
+				end,
 				settings = { python = { analysis = { typeCheckingMode = "basic" } } },
 			})
+			vim.lsp.enable("pyright")
+
+			vim.lsp.config("ruff", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable("ruff")
 
 			-- Go
-			vim.lsp.enable("gopls", {
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				settings = { gopls = { gofumpt = true, analyses = { unusedparams = true }, staticcheck = true } },
 			})
+			vim.lsp.enable("gopls")
 
 			-- Web Development
-			vim.lsp.enable("emmet_ls", {
+			vim.lsp.config("emmet_ls", {
 				capabilities = capabilities,
 				filetypes = { "html", "typescriptreact", "javascriptreact", "templ" },
 			})
+			vim.lsp.enable("emmet_ls")
 
-			vim.lsp.enable("html", { capabilities = capabilities, filetypes = { "html", "templ" } })
-			vim.lsp.enable("cssls", { capabilities = capabilities })
-			vim.lsp.enable("jsonls", {
+			vim.lsp.config("html", { capabilities = capabilities, filetypes = { "html", "templ" } })
+			vim.lsp.enable("html")
+			vim.lsp.config("cssls", { capabilities = capabilities })
+			vim.lsp.enable("cssls")
+			vim.lsp.config("jsonls", {
 				capabilities = capabilities,
 				settings = { json = { validate = { enable = true } } },
 			})
+			vim.lsp.enable("jsonls")
 
 			-- Others
-			vim.lsp.enable("bashls", { capabilities = capabilities })
-			vim.lsp.enable("nixd", { capabilities = capabilities })
-			vim.lsp.enable("templ", { capabilities = capabilities })
-			vim.lsp.enable("tailwindcss", {
+			vim.lsp.config("bashls", { capabilities = capabilities })
+			vim.lsp.enable("bashls")
+			vim.lsp.config("nixd", { capabilities = capabilities })
+			vim.lsp.enable("nixd")
+			vim.lsp.config("templ", { capabilities = capabilities })
+			vim.lsp.enable("templ")
+			vim.lsp.config("tailwindcss", {
 				capabilities = capabilities,
 				filetypes = { "html", "templ", "typescriptreact", "javascriptreact" },
 			})
+			vim.lsp.enable("tailwindcss")
 
 			-- Additional manual enablement
 			vim.lsp.enable("gleam")
