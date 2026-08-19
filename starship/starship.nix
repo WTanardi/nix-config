@@ -5,6 +5,9 @@
       settings = {
         add_newline = false;
         right_format = "$time";
+        gcloud = {
+          disabled = true;
+        };
       };
     };
   };
