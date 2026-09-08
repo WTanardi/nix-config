@@ -25,6 +25,19 @@ in
       GOPRIVATE = "github.com/soluixdeveloper/*";
       LD_LIBRARY_PATH = lib.mkAfter "${pkgs.stdenv.cc.cc.lib}/lib";
       KUBECONFIG = "kubeconfig-bci-dev.yaml";
+      NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (
+        with pkgs;
+        [
+          stdenv.cc.cc.lib
+          zlib
+          glibc
+          openssl
+          icu
+          curl
+          util-linux
+          libsecret
+        ]
+      );
     };
 
     packages = with pkgs; [
@@ -52,19 +65,22 @@ in
       k9s
       kubectl
       gcloud-with-gke
+      nix-ld
+      zlib
+      glibc
+      openssl
+      icu
+      curl
+      util-linux
+      libsecret
+      cursor-cli
 
       openvpn
       docker
+      gpgme
 
       typescript
       typescript-language-server
-      # (gleam.overrideAttrs (_: {
-      #   doCheck = false;
-      # }))
-      # erlang
-      rebar3
-
-      exercism
 
       nodejs_latest
       pnpm
@@ -138,6 +154,7 @@ in
         };
       };
     };
+
   };
   nixpkgs.config = {
     # allowBroken = true;

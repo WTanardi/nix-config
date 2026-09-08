@@ -25,10 +25,7 @@
         bash-language-server
         nixd
         eslint_d
-        templ
-        htmx-lsp
         tailwindcss-language-server
-        angular-language-server
 
         # Formatters
         stylua

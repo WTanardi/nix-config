@@ -245,8 +245,16 @@ return {
 
 			-- Go
 			vim.lsp.config("gopls", {
+				cmd = { "gopls", "-remote=auto" },
 				capabilities = capabilities,
-				settings = { gopls = { gofumpt = true, analyses = { unusedparams = true }, staticcheck = true } },
+				settings = {
+					gopls = {
+						gofumpt = true,
+						staticcheck = false,
+						analyses = { unusedparams = true },
+						directoryFilters = { "-**/vendor", "-**/.git", "-**/node_modules" },
+					},
+				},
 			})
 			vim.lsp.enable("gopls")
 
