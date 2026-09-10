@@ -50,12 +50,20 @@ let
       dir = "~/code/bba/bba-mbr-webadmin/";
     }
     {
-      name = "11-bba-wf";
+      name = "11-bba-vkyc";
+      dir = "~/code/bba/bba-mbr-vkyc/";
+    }
+    {
+      name = "12-bba-wf";
       dir = "~/code/bba/bba-workflow-service/";
     }
     {
-      name = "12-bba-custom";
+      name = "13-bba-custom";
       dir = "~/code/bba/bba-custom-service/";
+    }
+    {
+      name = "14-bba-stream";
+      dir = "~/code/bba/bba-stream-service/";
     }
     {
       name = "20-bci-web";
