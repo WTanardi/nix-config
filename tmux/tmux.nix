@@ -46,6 +46,10 @@ let
       dir = "~/code/bcas/bcas-gateway/";
     }
     {
+      name = "05-bcas-vkyc";
+      dir = "~/code/bcas/bcas-vkycAgent/";
+    }
+    {
       name = "10-bba-web";
       dir = "~/code/bba/bba-mbr-webadmin/";
     }
@@ -110,7 +114,7 @@ in
     enable = true;
     tmuxp.enable = true;
 
-    prefix = "C-a";
+    prefix = "M-s";
     baseIndex = 1;
     mouse = true;
 
@@ -127,42 +131,40 @@ in
       ##### PREFIX #####
 
       unbind C-b
-      bind C-a send-prefix
+      bind M-s send-prefix
 
       ##### WINDOW NAVIGATION #####
 
-      # Ctrl+Tab → next window
-      bind -n C-Tab next-window
+      # M+Tab → next window
+      bind -n M-Tab next-window
 
-      # Ctrl+Shift+Tab → previous window
-      bind -n C-S-Tab previous-window
+      # M+Shift+Tab → previous window
+      bind -n M-BTab previous-window
 
       ##### WINDOW MANAGEMENT #####
 
-      # new tab
-      bind -n C-t new-window
+      # M+t → new tab
+      bind -n M-t new-window
 
-      # close tab WITH CONFIRMATION
-      # -p sets the prompt text; #W is the window name
-      bind -n C-q confirm-before -p "Kill window #W? (y/n)" kill-window
+      # Cmd+q (or Cmd+w) → close tab WITH CONFIRMATION
+      bind -n M-q confirm-before -p "Kill window #W? (y/n)" kill-window
+      bind -n M-w confirm-before -p "Kill window #W? (y/n)" kill-window
 
       ##### DETACHING #####
 
-      # Standard detach (Prefix + d)
-      # This keeps the session alive in the background
       bind d detach-client
 
-      ##### DIRECT WINDOW ACCESS #####
+      ##### DIRECT WINDOW ACCESS (Cmd+1 to Cmd+9) #####
 
-      bind -n C-1 select-window -t 1
-      bind -n C-2 select-window -t 2
-      bind -n C-3 select-window -t 3
-      bind -n C-4 select-window -t 4
-      bind -n C-5 select-window -t 5
-      bind -n C-6 select-window -t 6
-      bind -n C-7 select-window -t 7
-      bind -n C-8 select-window -t 8
-      bind -n C-9 select-window -t 9
+      bind -n M-1 select-window -t 1
+      bind -n M-2 select-window -t 2
+      bind -n M-3 select-window -t 3
+      bind -n M-4 select-window -t 4
+      bind -n M-5 select-window -t 5
+      bind -n M-6 select-window -t 6
+      bind -n M-7 select-window -t 7
+      bind -n M-8 select-window -t 8
+      bind -n M-9 select-window -t 9
 
       ##### PERSISTENT SESSIONS #####
 
@@ -181,6 +183,8 @@ in
 
       bind s choose-tree -Zs -O name
 
+      set -g default-command "reattach-to-user-namespace -l $SHELL || $SHELL --login"
     '';
+
   };
 }
