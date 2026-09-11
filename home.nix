@@ -123,6 +123,13 @@ in
           };
         }
       ];
+
+      extraConfig = {
+        core = {
+          autoCrlf = "input";
+          ignoreCase = false;
+        };
+      };
     };
 
     ssh = {
