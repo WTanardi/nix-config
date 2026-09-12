@@ -4,8 +4,12 @@
       enable = true;
       enableCompletion = true;
       autocd = true;
-      autosuggestion = { enable = true; };
-      oh-my-zsh = { enable = true; };
+      autosuggestion = {
+        enable = true;
+      };
+      oh-my-zsh = {
+        enable = true;
+      };
       shellAliases = {
         n = "nvim";
         ls = "eza --icons=always";
@@ -36,24 +40,24 @@
 
         tx() {
           local session config_dir="''${XDG_CONFIG_HOME:-$HOME/.config}/tmuxp"
-          if [[ $1 == start ]]; then
+          
+          # Load all sessions if you pass 'start' or 'all'
+          if [[ $1 == start || $1 == all ]]; then
             _tmuxp_boot
             return
           fi
+          
           if (( $# )); then
             session="$1"
           else
             session=$(print -l -- ''${config_dir}/*.{yaml,yml,json}(N:t:r) | fzf --prompt 'tmuxp> ') || return
           fi
+          
           session="''${session#"''${session%%[![:space:]]*}"}"
           session="''${session%"''${session##*[![:space:]]}"}"
           [[ -n $session ]] || return
           tmuxp load --yes "$session"
         }
-
-        if [[ -o interactive && -z ''${TMUX:-} ]]; then
-          _tmuxp_boot
-        fi
       '';
     };
   };
