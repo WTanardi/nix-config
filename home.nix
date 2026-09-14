@@ -64,6 +64,7 @@ in
 
       typescript
       typescript-language-server
+      flutter
 
       nodejs_latest
       pnpm
