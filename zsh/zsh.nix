@@ -19,7 +19,8 @@
         sau = "sudo apt update && sudo apt upgrade && sudo apt autoremove";
         c = "clear";
         lg = "lazygit";
-        hms = "home-manager switch --flake ~/nix-config/.#williamtanardi";
+        hms = "home-manager switch --flake ~/nix-config#williamtanardi";
+        drs = "sudo darwin-rebuild switch --flake ~/nix-config#soluix";
       };
       initExtra = ''
         _tmuxp_load_all() {

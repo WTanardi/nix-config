@@ -1,6 +1,15 @@
 # Billy's nix configuration
 
-This is my dotfiles repo managed using nix and home-manager to ensure easy reproducibility
+Dotfiles for macOS, managed with [nix-darwin](https://github.com/nix-darwin/nix-darwin) (system) and [home-manager](https://github.com/nix-community/home-manager) (user).
+
+| File | What it owns |
+| --- | --- |
+| `darwin.nix` | macOS system: zsh in `/etc`, Touch ID sudo, nix-darwin itself |
+| `home.nix` + `zsh/` `nvim/` `tmux/` `starship/` | user: packages, git, ssh, shell, editor |
+
+`darwin-rebuild` applies **both**. Determinate Nix owns the Nix install, so `nix.enable = false` in `darwin.nix`.
+
+The flake output is `soluix`. Rename `hostname` in `flake.nix` if you want it to match `scutil --get LocalHostName`.
 
 ## Getting started
 
@@ -11,29 +20,51 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
   sh -s -- install
 ```
 
-### Step 2: Apply Nix config
+### Step 2: Clone and apply
+
+First-time bootstrap (installs nix-darwin and applies home-manager):
 
 ```sh
-nix shell nixpkgs#home-manager nixpkgs#gh --command sh -c "\
+nix shell nixpkgs#gh --command sh -c "\
   gh auth login \
   && gh repo clone WTanardi/nix-config --depth=1 \
-  && cd nix-config/ \
-  && home-manager switch --flake ./nix-config#willi -b bckp \
+  && sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#soluix \
 "
 ```
-### Step 3: Done !
 
-Anytime you want to refresh/update the config, cd into the root folder (nix-config/) and do
+If this repo is already at `~/nix-config` (existing home-manager machine):
+
+```sh
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/nix-config#soluix
+```
+
+Conflicting dotfiles are copied to `*.backup`.
+
+### Step 3: Later updates
+
+```sh
+drs
+```
+
+which is
+
+```sh
+sudo darwin-rebuild switch --flake ~/nix-config#soluix
+```
+
+User-only rebuild (no macOS system changes):
 
 ```sh
 hms
 ```
 
-which is a shortcut I've setup for 
+which is
 
 ```sh
-home-manager switch --flake ~/nix-config/.#willi
+home-manager switch --flake ~/nix-config#williamtanardi
 ```
+
+Prefer `drs` on this Mac so system and home stay in sync.
 
 ## Neovim
 

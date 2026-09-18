@@ -1,9 +1,12 @@
 {
-  description = "Home Manager configuration of willi";
+  description = "nix-darwin and Home Manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,28 +14,48 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      ...
+    }:
     let
       system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
+      username = "soluix";
+      hostname = "soluix";
+
+      homeModules = [
+        ./home.nix
+        ./nvim/nvim.nix
+        ./zsh/zsh.nix
+        ./starship/starship.nix
+        ./tmux/tmux.nix
+      ];
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
-      security.sudo.enable = true;
+      darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit inputs username; };
+        modules = [
+          ./darwin.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.${username}.imports = homeModules;
+          }
+        ];
+      };
+
       homeConfigurations."williamtanardi" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home.nix
-          ./nvim/nvim.nix
-          ./zsh/zsh.nix
-          ./starship/starship.nix
-          ./tmux/tmux.nix
-        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        modules = homeModules;
       };
     };
 }

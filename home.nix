@@ -65,6 +65,8 @@ in
       typescript
       typescript-language-server
       flutter
+      fvm
+      cocoapods
 
       nodejs_latest
       pnpm
@@ -121,6 +123,7 @@ in
               name = "williamtanardi-soluix";
             };
             url."git@github.com:soluixdeveloper/".insteadOf = "https://github.com/soluixdeveloper/";
+            core.sshCommand = "ssh -i ~/.ssh/id_ed25519_work -o IdentitiesOnly=yes";
           };
         }
       ];
@@ -129,6 +132,7 @@ in
         core = {
           autoCrlf = "input";
           ignoreCase = false;
+          sshCommand = "ssh -i ~/.ssh/id_ed25519_personal -o IdentitiesOnly=yes";
         };
       };
     };
@@ -141,14 +145,11 @@ in
         };
         "github.com" = {
           hostname = "github.com";
-          identityFile = "~/.ssh/id_ed25519_work";
+          identityFile = "~/.ssh/id_ed25519_personal";
+          identitiesOnly = true;
         };
       };
     };
 
-  };
-  nixpkgs.config = {
-    # allowBroken = true;
-    allowUnfree = true;
   };
 }
