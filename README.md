@@ -4,7 +4,7 @@ Dotfiles for macOS, managed with [nix-darwin](https://github.com/nix-darwin/nix-
 
 | File | What it owns |
 | --- | --- |
-| `darwin.nix` | macOS system: zsh in `/etc`, Touch ID sudo, nix-darwin itself |
+| `darwin.nix` | macOS system: zsh in `/etc`, Touch ID sudo, Homebrew (Flutter, CocoaPods) |
 | `home.nix` + `zsh/` `nvim/` `tmux/` `starship/` | user: packages, git, ssh, shell, editor |
 
 `darwin-rebuild` applies **both**. Determinate Nix owns the Nix install, so `nix.enable = false` in `darwin.nix`.
@@ -65,6 +65,17 @@ home-manager switch --flake ~/nix-config#williamtanardi
 ```
 
 Prefer `drs` on this Mac so system and home stay in sync.
+
+## Flutter / iOS simulator
+
+nix-darwin cannot replace Xcode. The App Store Xcode + Homebrew Flutter is what `flutter run` needs.
+
+1. Install [Homebrew](https://brew.sh) if it is not already at `/opt/homebrew`.
+2. Install **Xcode** from the App Store, open it once, and install the iOS platform / Simulator runtime (Settings → Components).
+3. Apply this config (`drs`). That installs official Flutter and CocoaPods via Homebrew, not `pkgs.flutter`.
+4. `open -a Simulator`, then `flutter devices`, then `flutter run`.
+
+Do not put `pkgs.flutter` back in `home.nix`. The Nix store copy is read-only, so iOS framework unpack and codesign fail on current macOS.
 
 ## Neovim
 

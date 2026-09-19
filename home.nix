@@ -64,9 +64,6 @@ in
 
       typescript
       typescript-language-server
-      flutter
-      fvm
-      cocoapods
 
       nodejs_latest
       pnpm
@@ -90,6 +87,7 @@ in
     ./languages/python.nix
     ./languages/lua.nix
     ./languages/go.nix
+    ./languages/flutter.nix
   ];
 
   programs = {

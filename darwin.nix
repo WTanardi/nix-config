@@ -30,4 +30,19 @@
     touchIdAuth = true;
     reattach = true;
   };
+
+  # Official Flutter + CocoaPods. nixpkgs flutter lives in the read-only
+  # store and breaks iOS simulator codesign / framework unpack on macOS 15.4+.
+  homebrew = {
+    enable = true;
+    enableZshIntegration = true;
+    brews = [ "cocoapods" ];
+    casks = [ "flutter" ];
+  };
+
+  system.activationScripts.extraActivation.text = ''
+    if [ -d /Applications/Xcode.app/Contents/Developer ]; then
+      xcode-select --switch /Applications/Xcode.app/Contents/Developer || true
+    fi
+  '';
 }
