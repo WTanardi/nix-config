@@ -183,7 +183,7 @@ in
 
       bind s choose-tree -Zs -O name
 
-      set -g default-command "reattach-to-user-namespace -l $SHELL || $SHELL --login"
+      set -g default-command "${lib.getExe pkgs.zsh} -l"
     '';
 
   };

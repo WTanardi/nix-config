@@ -245,7 +245,7 @@ return {
 
 			-- Go
 			vim.lsp.config("gopls", {
-				cmd = { "gopls", "-remote=auto" },
+				cmd = { "gopls" },
 				capabilities = capabilities,
 				settings = {
 					gopls = {

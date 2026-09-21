@@ -1,6 +1,7 @@
 {
   username,
   inputs,
+  lib,
   ...
 }:
 
@@ -25,6 +26,11 @@
   };
 
   programs.zsh.enable = true;
+
+  # GUI apps (Cursor, nvim) do not source zshrc; keep user packages on PATH.
+  environment.systemPath = lib.mkBefore [
+    "/etc/profiles/per-user/${username}/bin"
+  ];
 
   security.pam.services.sudo_local = {
     touchIdAuth = true;

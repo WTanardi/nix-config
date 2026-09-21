@@ -20,6 +20,7 @@
         pyright
         typescript-language-server
         emmet-ls
+        go
         gopls
         vscode-langservers-extracted
         bash-language-server

@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 {
+  programs.go.enable = true;
+
   home = {
     packages = with pkgs; [
-      # Go
-      go
       go-blueprint
       air
       templ
