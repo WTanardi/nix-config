@@ -290,6 +290,8 @@ return {
 
 			-- Additional manual enablement
 			vim.lsp.enable("gleam")
+
+			vim.lsp.enable("dart")
 		end,
 	},
 }
