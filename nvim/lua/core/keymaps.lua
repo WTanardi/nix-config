@@ -55,3 +55,13 @@ vim.keymap.set(
 	"<cmd>TSToolsRemoveUnusedImports<CR> <BAR> <cmd>TSToolsOrganizeImports<CR>",
 	{ desc = "Remove unused imports and organize them" }
 )
+
+-- In-place Base64 encoding/decoding for visually selected text
+vim.keymap.set("v", "<leader>be", [[c<c-r>=system('base64 --wrap=0', @")<cr><esc>]], { desc = "Base64 Encode" })
+
+vim.keymap.set(
+	"v",
+	"<leader>bd",
+	[[c<c-r>=system('base64 --wrap=0 --decode', @")<cr><esc>]],
+	{ desc = "Base64 Decode" }
+)
